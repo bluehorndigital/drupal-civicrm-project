@@ -10,6 +10,10 @@
 # Ignore local settings overrides.
 /web/sites/*/settings.local.php
 
+# Ignore the generated CiviCRM settings, it must be created on install.
+# @todo: determine if this can persist.
+/web/sites/*/civicrm.settings.php
+
 # Ignore Drupal's file directory
 /web/sites/*/files/
 
