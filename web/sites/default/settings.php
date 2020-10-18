@@ -104,8 +104,15 @@ $settings['entity_update_batch_size'] = 50;
 $settings['entity_update_backup'] = TRUE;
 
 // Automatic Platform.sh settings.
+// @todo document to setup Platform.sh
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
   include $app_root . '/' . $site_path . '/settings.platformsh.php';
+}
+
+// Automatic Pantheon settings.
+// @todo document to setup Pantheon
+if (file_exists($app_root . '/' . $site_path . '/settings.pantheon.php')) {
+  include $app_root . '/' . $site_path . '/settings.pantheon.php';
 }
 
 // Automatic inclusion of DDEV settings.
