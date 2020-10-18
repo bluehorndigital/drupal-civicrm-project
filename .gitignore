@@ -7,8 +7,7 @@
 /web/profiles/contrib/
 /web/libraries/
 
-# Ignore sensitive information
-/web/sites/*/settings.php
+# Ignore local settings overrides.
 /web/sites/*/settings.local.php
 
 # Ignore Drupal's file directory
@@ -23,4 +22,6 @@
 # Ignore .env files as they are personal
 /.env
 
-# Ignore composer.lock, this is a template.
+# Prevent private files from being committed.
+/private
+!/private/README.md
