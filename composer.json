@@ -21,9 +21,10 @@
         "civicrm/civicrm-packages": "~5.29",
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^2.4",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
+        "drupal/core-composer-scaffold": "^8.9",
+        "drupal/core-project-message": "^8.9",
+        "drupal/core-recommended": "^8.9",
+        "drupal/webform_civicrm": "^5.0@beta",
         "drush/drush": "^10.3",
         "vlucas/phpdotenv": "^5.2"
     },

@@ -45,10 +45,12 @@ install:
   - admin_toolbar_tools
   - admin_toolbar_links_access_filter
   - admin_toolbar_search
+  - webform
 
   # CiviCRM
   - civicrm
   - civicrmtheme
+  - webform_civicrm
 themes:
   - bartik
   - claro
