@@ -1,0 +1,8 @@
+#!/bin/bash
+## Description: [DevTool] Rebuild the local environment by destroying all data.
+
+ddev rm -RO
+rm web/sites/default/civicrm.settings.php
+ddev start
+ddev exec drush si --account-pass=admin --yes
+ddev uli
