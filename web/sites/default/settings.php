@@ -103,6 +103,8 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
+$databases = [];
+
 // Automatic Platform.sh settings.
 // @todo document to setup Platform.sh
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
