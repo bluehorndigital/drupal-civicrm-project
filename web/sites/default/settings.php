@@ -2,7 +2,6 @@
 
 // @codingStandardsIgnoreFile
 
-
 /**
  * Location of the site configuration files.
  */

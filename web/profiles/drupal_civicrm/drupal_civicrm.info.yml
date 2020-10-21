@@ -48,10 +48,7 @@ install:
   - webform
 
   # CiviCRM
-  - civicrm
-  - civicrmtheme
-  - webform_civicrm
-  - civicrm_entity
+  # @note: moved to `drupal_civicrm_install_civicrm` due to civicrm_install() error.
 themes:
   - bartik
   - claro
