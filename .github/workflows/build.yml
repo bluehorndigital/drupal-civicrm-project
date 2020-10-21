@@ -40,4 +40,4 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Install Drupal CiviCRM
-        run: ./vendor/bin/drush si --account-pass=admin --db-url=mysql://root:@localhost/db --yes
+        run: ./vendor/bin/drush site:install --account-pass=admin --db-url=mysql://root:@localhost:${{ job.services.mysql.ports[3306] }}/db --yes
