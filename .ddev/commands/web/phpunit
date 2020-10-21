@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Description: Run PHPUnit tests
+## Usage: phpunit file|dir
+## Example: "phpunit web/modules/contrib/civicrm" (run CiviCRM module tests), "phpunit web/modules/custom" (run custom module tests)
+
+# Ensure the browser test ouput directory exists.
+mkdir -p ${BROWSERTEST_OUTPUT_DIRECTORY}
+
+# Run PHPUnit!
+/var/www/html/vendor/bin/phpunit $@

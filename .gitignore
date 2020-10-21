@@ -29,3 +29,6 @@
 # Prevent private files from being committed.
 /private
 !/private/README.md
+
+# Ignore DDEV testing services by default (remove if you always want them running.)
+/.ddev/docker-compose.testing.yaml
