@@ -103,7 +103,16 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
-$databases = [];
+$databases['default']['default'] = [
+  'database' => $_ENV['DB_DATABASE'],
+  'username' => $_ENV['DB_USER'],
+  'password' => $_ENV['DB_PASSWORD'],
+  'prefix' => $_ENV['DB_PREFIX'],
+  'host' => $_ENV['DB_HOST'],
+  'port' => $_ENV['DB_PORT'],
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+];
 
 // Automatic Platform.sh settings.
 // @todo document to setup Platform.sh
