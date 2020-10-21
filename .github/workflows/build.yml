@@ -40,14 +40,7 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Install Drupal CiviCRM
-        run: ./vendor/bin/drush site:install --account-pass=admin --yes
-        env:
-          DB_DATABASE: db
-          DB_USER: root
-          DB_PASSWORD: ''
-          DB_PREFIX: ''
-          DB_HOST: '127.0.0.1'
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: ./vendor/bin/drush site:install --account-pass=admin --db-url=mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db --yes
       - name: Debug
         if: failure()
         run: cat web/sites/default/settings.php
