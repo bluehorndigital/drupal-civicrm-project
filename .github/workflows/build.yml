@@ -6,17 +6,14 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  install:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         php: [7.4, 7.3]
         os: [ubuntu-latest]
-        module: ['civicrm', 'civicrm_entity', 'webform_civicrm']
-    name: P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.module }}
+    name: site:install - ${{ matrix.php }}
     services:
-      chromedriver:
-        image: drupalci/webdriver-chromedriver:production
       mysql:
         image: mysql:5.7
         env:
@@ -44,12 +41,45 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Install Drupal CiviCRM
         run: ./vendor/bin/drush site:install --account-pass=admin --db-url=mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db --yes
+  phpunit:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        php: [7.4, 7.3]
+        os: [ubuntu-latest]
+        module: ['civicrm', 'civicrm_entity', 'webform_civicrm']
+    name: phpunit - ${{ matrix.php }} - ${{ matrix.module }}
+    services:
+      chromedriver:
+        image: drupalci/webdriver-chromedriver:production
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: db
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+            path: |
+              ~/.composer/cache/files
+              ~/.composer/cache/repo
+            key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+      - uses: shivammathur/setup-php@v2
+        with:
+            php-version: ${{ matrix.php }}
+            extensions: dom, curl, libxml, mbstring, zip, pdo, mysql, pdo_mysql, bcmath, soap, intl, gd, exif, iconv
+            coverage: none
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
       - name: Run php built-in server
         run: php -S 127.0.0.1:8080 -t web &
       - name: PHPUnit ${{ matrix.module }}
         run: ./vendor/bin/phpunit web/modules/contrib/${{ matrix.module}}
         env:
-          SIMPLETEST_DB: mysql://db:db@db:3306/db
+          SIMPLETEST_DB: mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db
           SIMPLETEST_BASE_URL: http://127.0.0.1:8080
           MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://127.0.0.1:9515"]'
-
