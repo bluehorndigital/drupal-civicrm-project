@@ -12,8 +12,11 @@ jobs:
       matrix:
         php: [7.4, 7.3]
         os: [ubuntu-latest]
-    name: P${{ matrix.php }} - ${{ matrix.os }}
+        module: ['civicrm', 'civicrm_entity', 'webform_civicrm']
+    name: P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.module }}
     services:
+      chromedriver:
+        image: drupalci/webdriver-chromedriver:production
       mysql:
         image: mysql:5.7
         env:
@@ -41,6 +44,12 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Install Drupal CiviCRM
         run: ./vendor/bin/drush site:install --account-pass=admin --db-url=mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db --yes
-      - name: Debug
-        if: failure()
-        run: cat web/sites/default/settings.php
+      - name: Run php built-in server
+        run: php -S 127.0.0.1:8080 -t web &
+      - name: PHPUnit ${{ matrix.module }}
+        run: ./vendor/bin/phpunit web/modules/contrib/${{ matrix.module}}
+        env:
+          SIMPLETEST_DB: mysql://db:db@db:3306/db
+          SIMPLETEST_BASE_URL: http://127.0.0.1:8080
+          MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://127.0.0.1:9515"]'
+
