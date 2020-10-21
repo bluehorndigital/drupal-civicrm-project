@@ -2,7 +2,6 @@
 
 // @codingStandardsIgnoreFile
 
-
 /**
  * Location of the site configuration files.
  */
@@ -102,6 +101,8 @@ $settings['entity_update_batch_size'] = 50;
  * retained after a successful entity update process.
  */
 $settings['entity_update_backup'] = TRUE;
+
+$databases = [];
 
 // Automatic Platform.sh settings.
 // @todo document to setup Platform.sh
