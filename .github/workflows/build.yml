@@ -45,10 +45,17 @@ jobs:
         run: ./vendor/bin/drush site:install --account-pass=admin --db-url=mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db --yes
   phpunit:
     runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
+      fail-fast: false
       matrix:
-        php: [7.4, 7.3]
+        php: [7.3]
         os: [ubuntu-latest]
+        experimental: [false]
+        include:
+          - php: 7.4
+            os: ubuntu-latest
+            experimental: true
     name: phpunit - ${{ matrix.php }}
     services:
       chromedriver:
