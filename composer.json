@@ -24,6 +24,7 @@
         "civicrm/civicrm-drupal-8": "~5.29",
         "civicrm/civicrm-packages": "~5.29",
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^2.4",
         "drupal/civicrm_entity": "dev-8.x-3.x",
         "drupal/core-composer-scaffold": "^8.9",
@@ -57,6 +58,11 @@
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "patches": {
+            "civicrm/civicrm-core": {
+                "Fix Drupal 8+ settings location during tests": "https://patch-diff.githubusercontent.com/raw/civicrm/civicrm-core/pull/18843.patch"
+            }
         },
         "drupal-scaffold": {
             "locations": {
