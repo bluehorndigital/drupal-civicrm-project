@@ -63,13 +63,20 @@ function drupal_civicrm_install() {
 /**
  * Implements hook_install_tasks().
  */
-function drupal_civicrm_install_tasks(array $install_state) {
-  return [
-    'drupal_civicrm_install_civicrm' => [
+/**
+ * Implements hook_install_tasks_alter().
+ */
+function drupal_civicrm_install_tasks_alter(&$tasks, $install_state) {
+  $task_names = array_keys($tasks);
+  $install_modules_position = array_search('install_profile_modules', $task_names, TRUE) + 1;
+  $new_task = [
+    'install_drupal_civicrm' => [
       'display_name' => new TranslatableMarkup('Install CiviCRM modules'),
       'type' => 'batch',
     ],
   ];
+  $existing_tasks = $tasks;
+  $tasks = array_slice($existing_tasks, 0, $install_modules_position) + $new_task + array_slice($existing_tasks, $install_modules_position);
 }
 
 /**
@@ -81,7 +88,7 @@ function drupal_civicrm_install_tasks(array $install_state) {
  * @todo open an issue for CiviCRM D8
  * @see install_profile_modules().
  */
-function drupal_civicrm_install_civicrm(array &$install_state) {
+function install_drupal_civicrm(array &$install_state) {
   $modules = [
     'civicrm',
     'civicrmtheme',
