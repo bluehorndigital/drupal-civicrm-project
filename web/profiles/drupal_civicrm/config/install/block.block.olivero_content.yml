@@ -4,9 +4,9 @@ dependencies:
   module:
     - system
   theme:
-    - bartik
-id: bartik_content
-theme: bartik
+    - olivero
+id: olivero_content
+theme: olivero
 region: content
 weight: 0
 provider: null

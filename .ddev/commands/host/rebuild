@@ -3,6 +3,7 @@
 
 ddev rm -RO
 rm web/sites/default/civicrm.settings.php
+rm -rf private/civicrm
 ddev start
 ddev exec drush si --account-pass=admin --yes
 ddev uli
