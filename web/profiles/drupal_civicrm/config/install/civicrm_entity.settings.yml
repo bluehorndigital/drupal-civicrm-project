@@ -1,0 +1,4 @@
+filter_format: basic_html
+enabled_entity_types:
+  civicrm_event: civicrm_event
+disable_hooks: false
