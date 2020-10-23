@@ -1,4 +1,4 @@
-name: Drupal CiviCRM
+name: Build
 on:
   push:
     branches: [main]

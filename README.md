@@ -1,4 +1,4 @@
-# Drupal CiviCRM
+# Drupal CiviCRM [![Actions Status](https://github.com/bluehorndigital/drupal-civicrm-project/workflows/Build/badge.svg)](https://github.com/bluehorndigital/drupal-civicrm-project/actions)
 
 This is a Composer template for setting up a Drupal and CiviCRM project.
 
