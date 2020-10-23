@@ -13,6 +13,7 @@ abstract class CiviCrmTestBase extends BrowserTestBase {
   protected $defaultTheme = 'classy';
 
   protected static $modules = [
+    'block',
     'civicrm',
   ];
 
@@ -23,6 +24,10 @@ abstract class CiviCrmTestBase extends BrowserTestBase {
     define('CIVICRM_CONTAINER_CACHE', 'never');
     define('CIVICRM_TEST', 1);
     parent::setUp();
+    $this->drupalPlaceBlock('system_breadcrumb_block');
+    $this->drupalPlaceBlock('page_title_block');
+    $this->drupalPlaceBlock('local_tasks_block');
+    $this->drupalPlaceBlock('local_actions_block');
   }
 
   protected function changeDatabasePrefix() {
