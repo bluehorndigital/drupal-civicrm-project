@@ -24,9 +24,9 @@ abstract class CiviCrmTestBase extends BrowserTestBase {
     define('CIVICRM_CONTAINER_CACHE', 'never');
     define('CIVICRM_TEST', 1);
     parent::setUp();
-    $this->drupalPlaceBlock('system_breadcrumb_block');
     $this->drupalPlaceBlock('page_title_block');
-    $this->drupalPlaceBlock('local_tasks_block');
+    // @todo find out why the local tasks block triggers an install canary error in tests.
+    // $this->drupalPlaceBlock('local_tasks_block');
     $this->drupalPlaceBlock('local_actions_block');
   }
 

@@ -16,5 +16,5 @@ services:
       - SYMFONY_DEPRECATIONS_HELPER=weak
       - SIMPLETEST_DB=mysql://db:db@db:3306/db
       - SIMPLETEST_BASE_URL=http://web
-      - BROWSERTEST_OUTPUT_DIRECTORY=/var/www/html/browsertest_output
+      - BROWSERTEST_OUTPUT_DIRECTORY=/var/www/html/private/browsertest_output
       - MINK_DRIVER_ARGS_WEBDRIVER=["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://chromedriver:9515"]
