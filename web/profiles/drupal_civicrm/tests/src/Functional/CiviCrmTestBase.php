@@ -21,20 +21,44 @@ abstract class CiviCrmTestBase extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp() {
-    define('CIVICRM_CONTAINER_CACHE', 'never');
-    define('CIVICRM_TEST', 1);
     parent::setUp();
     $this->drupalPlaceBlock('page_title_block');
-    // @todo find out why the local tasks block triggers an install canary error in tests.
-    // $this->drupalPlaceBlock('local_tasks_block');
+    $this->drupalPlaceBlock('local_tasks_block');
     $this->drupalPlaceBlock('local_actions_block');
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function changeDatabasePrefix() {
     parent::changeDatabasePrefix();
     $connection_info = Database::getConnectionInfo('default');
     Database::addConnectionInfo('civicrm_test', 'default', $connection_info['default']);
     Database::addConnectionInfo('civicrm', 'default', $connection_info['default']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function prepareSettings() {
+    parent::prepareSettings();
+
+    // Set the test environment variables for CiviCRM.
+    $filename = $this->siteDirectory . '/settings.php';
+    chmod($filename, 0666);
+
+    $constants = <<<CONSTANTS
+
+if (!defined('CIVICRM_CONTAINER_CACHE')) {
+  define('CIVICRM_CONTAINER_CACHE', 'never');
+}
+if (!defined('CIVICRM_TEST')) {
+  define('CIVICRM_TEST', 'never');
+}
+
+CONSTANTS;
+
+    file_put_contents($filename, $constants, FILE_APPEND);
   }
 
 }
