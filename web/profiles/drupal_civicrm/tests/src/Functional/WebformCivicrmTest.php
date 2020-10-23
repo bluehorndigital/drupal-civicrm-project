@@ -52,6 +52,11 @@ final class WebformCivicrmTest extends CiviCrmTestBase {
     $this->getSession()->getPage()->fillField('Machine-readable name', 'civicrm_webform_test');
     $this->getSession()->getPage()->pressButton('Save');
     $this->assertSession()->pageTextContainsOnce('Webform CiviCRM Webform Test created.');
+    $this->getSession()->getPage()->clickLink('Settings');
+    $this->getSession()->getPage()->clickLink('CiviCRM');
+    $this->getSession()->getPage()->checkField('Enable CiviCRM Processing');
+    $this->getSession()->getPage()->pressButton('Save Settings');
+    $this->assertSession()->pageTextNotContains('The website encountered an unexpected error. Please try again later.');
   }
 
 }
