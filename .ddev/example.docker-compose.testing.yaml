@@ -13,6 +13,7 @@ services:
     links:
       - chromedriver:$DDEV_HOSTNAME
     environment:
+      - SYMFONY_DEPRECATIONS_HELPER=weak
       - SIMPLETEST_DB=mysql://db:db@db:3306/db
       - SIMPLETEST_BASE_URL=http://web
       - BROWSERTEST_OUTPUT_DIRECTORY=/var/www/html/browsertest_output
