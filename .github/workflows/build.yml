@@ -88,6 +88,7 @@ jobs:
       - name: PHPUnit ${{ matrix.module }}
         run: ./vendor/bin/phpunit web/profiles/drupal_civicrm/${{ matrix.module}}
         env:
+          SYMFONY_DEPRECATIONS_HELPER: weak
           SIMPLETEST_DB: mysql://root:@127.0.0.1:${{ job.services.mysql.ports[3306] }}/db
           SIMPLETEST_BASE_URL: http://127.0.0.1:8080
           MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://127.0.0.1:9515"]'
