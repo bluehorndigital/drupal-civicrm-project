@@ -37,6 +37,7 @@ jobs:
             php-version: ${{ matrix.php }}
             extensions: dom, curl, libxml, mbstring, zip, pdo, mysql, pdo_mysql, bcmath, soap, intl, gd, exif, iconv
             coverage: none
+            tools: composer:v1
       - name: Validate composer.json
         run: composer validate
       - name: Install dependencies
@@ -81,6 +82,7 @@ jobs:
             php-version: ${{ matrix.php }}
             extensions: dom, curl, libxml, mbstring, zip, pdo, mysql, pdo_mysql, bcmath, soap, intl, gd, exif, iconv
             coverage: none
+            tools: composer:v1
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Run php built-in server
