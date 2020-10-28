@@ -32,3 +32,5 @@
 
 # Ignore DDEV testing services by default (remove if you always want them running.)
 /.ddev/docker-compose.testing.yaml
+
+/phpunit.xml

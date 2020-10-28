@@ -8,4 +8,4 @@
 mkdir -p ${BROWSERTEST_OUTPUT_DIRECTORY}
 
 # Run PHPUnit!
-/var/www/html/vendor/bin/phpunit $@
+BROWSERTEST_OUTPUT_BASE_URL=$DDEV_PRIMARY_URL /var/www/html/vendor/bin/phpunit $@
