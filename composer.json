@@ -54,6 +54,7 @@
         ]
     },
     "extra": {
+        "compile-mode": "all",
         "enable-patching": "true",
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
