@@ -48,6 +48,7 @@ install:
   - admin_toolbar_links_access_filter
   - admin_toolbar_search
   - webform
+  - webform_ui
 
   # CiviCRM
   # @note: moved to `drupal_civicrm_install_civicrm` due to civicrm_install() error.
