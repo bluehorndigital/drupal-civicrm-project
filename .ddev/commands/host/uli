@@ -1,5 +1,7 @@
 #!/bin/bash
 ## Description: Log into the Drupal site with a one-time login link.
+## Usage: uli
+
 URL=$(ddev exec drush uli | tr -d '\r')
 
 case $OSTYPE in

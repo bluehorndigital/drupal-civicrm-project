@@ -1,5 +1,6 @@
 #!/bin/bash
 ## Description: [DevTool] Rebuild the local environment by destroying all data.
+## Usage: rebuild
 
 ddev rm -RO
 rm web/sites/default/civicrm.settings.php
