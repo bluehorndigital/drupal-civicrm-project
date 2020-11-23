@@ -47,6 +47,7 @@ install:
   - admin_toolbar_tools
   - admin_toolbar_links_access_filter
   - admin_toolbar_search
+  - token
   - webform
   - webform_ui
 
