@@ -10,12 +10,12 @@
     },
     "repositories": {
         "0": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
-        "civicrm_entity": {
             "type": "vcs",
             "url": "https://github.com/eileenmcnaughton/civicrm_entity"
+        },
+        "1": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         }
     },
     "require": {
