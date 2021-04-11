@@ -9,13 +9,13 @@
         "chat": "https://chat.civicrm.org/civicrm/channels/drupal"
     },
     "repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
         "civicrm_entity": {
             "type": "vcs",
             "url": "https://github.com/eileenmcnaughton/civicrm_entity"
+        },
+        "0": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         }
     },
     "require": {
@@ -30,6 +30,7 @@
         "drupal/core-composer-scaffold": "^8.9",
         "drupal/core-project-message": "^8.9",
         "drupal/core-recommended": "^8.9",
+        "drupal/fullcalendar_view": "^5.0",
         "drupal/olivero": "^1.0@beta",
         "drupal/token": "^1.7",
         "drupal/webform_civicrm": "^5.0@beta",
@@ -60,11 +61,6 @@
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
-        },
-        "patches": {
-            "civicrm/civicrm-core": {
-                "Fix Drupal 8+ settings location during tests": "https://patch-diff.githubusercontent.com/raw/civicrm/civicrm-core/pull/18843.patch"
-            }
         },
         "drupal-scaffold": {
             "locations": {
