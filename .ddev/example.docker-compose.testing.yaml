@@ -15,6 +15,7 @@ services:
     environment:
       - SYMFONY_DEPRECATIONS_HELPER=weak
       - SIMPLETEST_DB=mysql://db:db@db:3306/db
+      - SIMPLETEST_CIVICRM_DB=mysql://db:db@db:3306/db_civicrm_test
       - SIMPLETEST_BASE_URL=http://web
       - BROWSERTEST_OUTPUT_DIRECTORY=/var/www/html/private/browsertest_output
       - BROWSERTEST_OUTPUT_BASE_URL=$DDEV_PRIMARY_URL

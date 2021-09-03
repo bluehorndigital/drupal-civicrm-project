@@ -119,6 +119,27 @@ if (file_exists($app_root . '/' . $site_path . '/settings.pantheon.php')) {
 // Automatic inclusion of DDEV settings.
 if (file_exists($app_root . '/' . $site_path . '/settings.ddev.php')) {
   include $app_root . '/' . $site_path . '/settings.ddev.php';
+
+  $host = "db";
+  $port = 3306;
+
+  // If DDEV_PHP_VERSION is not set but IS_DDEV_PROJECT *is*, it means we're running (drush) on the host,
+  // so use the host-side bind port on docker IP
+  if (empty(getenv('DDEV_PHP_VERSION') && getenv('IS_DDEV_PROJECT') == 'true')) {
+    $host = "127.0.0.1";
+    $port = 53186;
+  }
+
+  $databases['civicrm']['default'] = array(
+    'database' => "db_civicrm",
+    'username' => "db",
+    'password' => "db",
+    'host' => $host,
+    'driver' => "mysql",
+    'port' => $port,
+    'prefix' => "",
+  );
+//  define('CIVICRM_DSN', 'mysql://db:db@db:3306/db_civicrm?new_link=true');
 }
 
 // Automatic inclusion of local settings.

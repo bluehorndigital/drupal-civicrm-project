@@ -13,6 +13,12 @@ provider: default
 use_dns_when_possible: true
 working_dir:
   web: /var/www/html
+hooks:
+  post-start:
+    - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS db_civicrm; GRANT ALL ON db_civicrm.* to 'db'@'%';"
+      service: db
+    - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS db_civicrm_test; GRANT ALL ON db_civicrm_test.* to 'db'@'%';"
+      service: db
 
 # This config.yaml was created with ddev version v1.15.3
 # webimage: drud/ddev-webserver:v1.15.3
