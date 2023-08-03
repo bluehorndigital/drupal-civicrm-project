@@ -34,3 +34,5 @@
 /.ddev/docker-compose.testing.yaml
 
 /phpunit.xml
+
+/.phpunit.result.cache

@@ -95,6 +95,13 @@ function install_drupal_civicrm(array &$install_state) {
     'webform_civicrm',
     'civicrm_entity',
   ];
-  \Drupal::state()->set('install_profile_modules', $modules);
-  return install_profile_modules($install_state);
+  foreach ($modules as $module) {
+    $operations[] = ['_install_module_batch', [$module, $module]];
+  }
+  $batch = [
+    'operations' => $operations,
+    'title' => t('Installing CiviCRM modules'),
+    'error_message' => t('The installation has encountered an error.'),
+  ];
+  return $batch;
 }

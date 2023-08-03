@@ -27,19 +27,17 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^2.4",
         "drupal/civicrm_entity": "dev-8.x-3.x",
-        "drupal/core-composer-scaffold": "^8.9",
-        "drupal/core-project-message": "^8.9",
-        "drupal/core-recommended": "^8.9",
+        "drupal/core-composer-scaffold": "^9.2",
+        "drupal/core-project-message": "^9.2",
+        "drupal/core-recommended": "^9.2",
         "drupal/fullcalendar_view": "^5.0",
-        "drupal/olivero": "^1.0@beta",
         "drupal/token": "^1.7",
         "drupal/webform_civicrm": "^5.0@beta",
         "drush/drush": "^10.3",
         "vlucas/phpdotenv": "^5.2"
     },
     "require-dev": {
-        "drupal/core-dev-pinned": "^8.9",
-        "zaporylie/composer-drupal-optimizations": "^1.1"
+        "drupal/core-dev": "^9.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -48,7 +46,17 @@
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/installers": true,
+            "civicrm/composer-compile-plugin": true,
+            "civicrm/composer-downloads-plugin": true,
+            "cweagans/composer-patches": true,
+            "civicrm/civicrm-asset-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "autoload": {
         "files": [
